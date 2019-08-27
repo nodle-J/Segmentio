@@ -10,6 +10,9 @@ import UIKit
 
 class BadgeViewPresenter {
     
+    
+    
+    
     func addBadgeForContainerView(_ containerView: UIView, counterValue: Int, backgroundColor: UIColor = .red,
                                   badgeSize: BadgeSize = .standard) {
         var badgeView: BadgeWithCounterView!
@@ -25,6 +28,7 @@ class BadgeViewPresenter {
             badgeView.translatesAutoresizingMaskIntoConstraints = false
             containerView.addSubview(badgeView)
             containerView.bringSubviewToFront(badgeView)
+            
             setupBadgeConstraints(badgeView, counterValue: counterValue)
         }
     }
@@ -38,9 +42,11 @@ class BadgeViewPresenter {
     }
     
     fileprivate func setupBadgeConstraints(_ badgeView: BadgeWithCounterView, counterValue: Int) {
-        var constraintConstant:CGFloat = -5.0
+//        badgeView.sizeToFit()
+//        badgeView.backgroundColor = UIColor.green
+        var constraintConstant:CGFloat = 15
         if counterValue > 9 {
-            constraintConstant = -10.0
+            constraintConstant = 15
         }
         let segmentTitleLabelHorizontalCenterConstraint =
             NSLayoutConstraint(
@@ -50,7 +56,7 @@ class BadgeViewPresenter {
                 toItem: badgeView.superview,
                 attribute: .top,
                 multiplier: 1,
-                constant: 6.0
+                constant: 5
         )
         
         let segmentTitleLabelVerticalCenterConstraint =
@@ -66,6 +72,8 @@ class BadgeViewPresenter {
         segmentTitleLabelHorizontalCenterConstraint.isActive = true
         segmentTitleLabelVerticalCenterConstraint.isActive = true
     }
+    
+   
     
 }
 

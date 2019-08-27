@@ -78,7 +78,7 @@ class SegmentioCell: UICollectionViewCell {
         if let segmentTitleLabel = segmentTitleLabel, let containerView = containerView {
             containerView.addSubview(segmentTitleLabel)
         }
-
+            
         segmentImageView?.translatesAutoresizingMaskIntoConstraints = false
         segmentTitleLabel?.translatesAutoresizingMaskIntoConstraints = false
         containerView?.translatesAutoresizingMaskIntoConstraints = false
@@ -166,7 +166,7 @@ class SegmentioCell: UICollectionViewCell {
             )
         } else {
             badgePresenter.addBadgeForContainerView(
-                containerView!,
+                segmentTitleLabel!,
                 counterValue: badgeCount,
                 backgroundColor: color,
                 badgeSize: .standard
@@ -186,7 +186,7 @@ class SegmentioCell: UICollectionViewCell {
         guard let segmentTitleLabel = segmentTitleLabel, let containerView = containerView else {
             return
         }
-        
+        segmentTitleLabel.sizeToFit()
         let segmentTitleLabelVerticalCenterConstraint = NSLayoutConstraint(
             item: segmentTitleLabel,
             attribute: .centerY,
@@ -196,29 +196,40 @@ class SegmentioCell: UICollectionViewCell {
             multiplier: 1,
             constant: 0
         )
-        let segmentTitleLabelTrailingConstraint = NSLayoutConstraint(
+        let segmentTitleLabelHoCenterConstraint = NSLayoutConstraint(
             item: segmentTitleLabel,
-            attribute: .trailing,
+            attribute: .centerX,
             relatedBy: .equal,
             toItem: containerView,
-            attribute: .trailingMargin,
-            multiplier: 1.0,
-            constant: 0
-        )
-        let segmentTitleLabelLeadingConstraint = NSLayoutConstraint(
-            item: segmentTitleLabel,
-            attribute: .leading,
-            relatedBy: .equal,
-            toItem: containerView,
-            attribute: .leadingMargin,
-            multiplier: 1.0,
+            attribute: .centerX,
+            multiplier: 1,
             constant: 0
         )
         
+//        let segmentTitleLabelTrailingConstraint = NSLayoutConstraint(
+//            item: segmentTitleLabel,
+//            attribute: .trailing,
+//            relatedBy: .equal,
+//            toItem: containerView,
+//            attribute: .trailingMargin,
+//            multiplier: 1.0,
+//            constant: 0
+//        )
+//        let segmentTitleLabelLeadingConstraint = NSLayoutConstraint(
+//            item: segmentTitleLabel,
+//            attribute: .leading,
+//            relatedBy: .equal,
+//            toItem: containerView,
+//            attribute: .leadingMargin,
+//            multiplier: 1.0,
+//            constant: 0
+//        )
+        
         addConstraints([
-            segmentTitleLabelTrailingConstraint,
-            segmentTitleLabelVerticalCenterConstraint,
-            segmentTitleLabelLeadingConstraint
+            //segmentTitleLabelTrailingConstraint,
+            segmentTitleLabelHoCenterConstraint,
+            segmentTitleLabelVerticalCenterConstraint
+           // segmentTitleLabelLeadingConstraint
         ])
     }
     
